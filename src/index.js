@@ -15,7 +15,8 @@ class App extends React.Component {
 
   getTodos() {
     firebaseDB.ref("/todos").on("value", data => {
-      if (!data) return;
+      if (!data.val()) return;
+
       this.setState(prevState => ({ todos: data.val() }));
     });
   }
