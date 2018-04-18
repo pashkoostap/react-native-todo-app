@@ -1,4 +1,4 @@
-import { GET_TODOS, ADD_TODO, DELETE_TODO } from "./actionTypes";
+import { GET_TODOS, ADD_TODO, DELETE_TODO } from "../../constants/actionTypes";
 
 export const getTodos = todos => ({
   type: GET_TODOS,

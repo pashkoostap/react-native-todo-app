@@ -1,56 +1,15 @@
 import React from "react";
-import { StyleSheet, ScrollView, View, Button } from "react-native";
-import { firebaseDB } from "./utils/firebase";
+import { AppRegistry } from "react-native";
+import { Provider } from "react-redux";
 
-import Todos from "./components/Todos";
+import RootNavigator from "./containers/navigation/RootNavigator";
 
-class App extends React.Component {
-  constructor() {
-    super();
+import store from "./store";
 
-    this.state = {
-      todos: []
-    };
-  }
+const appWrapper = () => (
+  <Provider store={store}>
+    <RootNavigator />
+  </Provider>
+);
 
-  getTodos() {
-    firebaseDB.ref("/todos").on("value", data => {
-      if (!data.val()) return;
-
-      this.setState(prevState => ({ todos: data.val() }));
-    });
-  }
-
-  setTodo(todo) {
-    firebaseDB.ref("/todos").set([...this.state.todos, todo]);
-  }
-
-  componentDidMount() {
-    this.getTodos();
-  }
-
-  render() {
-    const { todos } = this.state;
-
-    return (
-      <ScrollView>
-        <View style={styles.container}>
-          <Todos todos={todos} />
-
-          <Button onPress={() => this.setTodo(new Date())} title="Set todo" />
-        </View>
-      </ScrollView>
-    );
-  }
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center"
-  }
-});
-
-export default App;
+AppRegistry.registerComponent("reactnativetodoapp", () => appWrapper);
