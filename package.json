@@ -12,7 +12,9 @@
     "start": "react-native start",
     "android": "react-native run-android",
     "ios": "react-native run-ios",
-    "test": "jest"
+    "test": "jest",
+    "jest": "jest --watchAll",
+    "jest-update": "jest -u"
   },
   "jest": {
     "preset": "react-native"
