@@ -20,6 +20,7 @@
     "preset": "react-native"
   },
   "dependencies": {
+    "normalizr": "^3.2.4",
     "react": "16.3.0-alpha.1",
     "react-native": "0.54.0",
     "react-native-firebase": "^4.0.4",
@@ -27,7 +28,9 @@
     "react-navigation": "^1.5.11",
     "react-navigation-redux-helpers": "^1.0.5",
     "react-redux": "^5.0.7",
+    "recompose": "^0.27.0",
     "redux": "^4.0.0",
-    "redux-form": "^7.3.0"
+    "redux-form": "^7.3.0",
+    "redux-thunk": "^2.2.0"
   }
 }

@@ -1,12 +1,12 @@
 import { combineReducers } from "redux";
 import { reducer as formReducer } from "redux-form";
 
-import todos from "./todos";
+import todosReducer from "./todosReducer";
 import navReducer from "./navReducer";
 
 const rootReducer = combineReducers({
   nav: navReducer,
-  todos,
+  todosReducer,
   form: formReducer
 });
 
