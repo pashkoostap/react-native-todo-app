@@ -20,7 +20,7 @@ const todos = (state = initState, action) => {
     case GET_TODOS_SUCCESS:
       return {
         ...state,
-        todos: action.todos,
+        todos: action.todos || {},
         isLoading: false,
         isLoaded: true
       };

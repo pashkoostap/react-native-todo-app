@@ -1,13 +1,8 @@
-const objectId = () => {
-  const timestamp = ((new Date().getTime() / 1000) | 0).toString(16);
-  return (
-    timestamp +
-    "xxxxxxxxxxxxxxxx"
-      .replace(/[x]/g, function() {
-        return ((Math.random() * 16) | 0).toString(16);
-      })
-      .toLowerCase()
-  );
-};
+const ObjectId = (
+  m = Math,
+  d = Date,
+  h = 16,
+  s = s => m.floor(s).toString(h)
+) => s(d.now() / 1000) + " ".repeat(h).replace(/./g, () => s(m.random() * h));
 
-export default objectId;
+export default ObjectId;

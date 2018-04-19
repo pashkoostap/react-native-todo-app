@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import { StyleSheet, View, Text, ScrollView } from "react-native";
+import { StyleSheet, View, Text, Button, ScrollView } from "react-native";
 import { connect } from "react-redux";
 import { getTodos } from "../store/actions/todos";
+import { mapTodos } from "../models";
 
 import Todos from "../components/Todos";
 
@@ -35,7 +36,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = ({ todosReducer }) => ({
-  todos: todosReducer.todos
+  todos: mapTodos(todosReducer.todos)
 });
 
 const mapDispatchToProps = dispatch => ({
