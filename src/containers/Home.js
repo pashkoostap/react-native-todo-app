@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import { getTodos, addTodo } from "../store/actions";
+import { getTodos, addTodo, deleteTodo } from "../store/actions";
 import { mapTodos } from "../models";
 
 import Home from "../components/Home";
@@ -16,7 +16,13 @@ class HomeScreen extends Component {
   }
 
   render() {
-    return <Home todos={this.props.todos} addTodo={this.props.addTodo} />;
+    return (
+      <Home
+        todos={this.props.todos}
+        addTodo={this.props.addTodo}
+        deleteTodo={this.props.deleteTodo}
+      />
+    );
   }
 }
 
@@ -26,7 +32,8 @@ const mapStateToProps = ({ todosReducer }) => ({
 
 const mapDispatchToProps = dispatch => ({
   getTodos: () => dispatch(getTodos()),
-  addTodo: todo => dispatch(addTodo(todo))
+  addTodo: todo => dispatch(addTodo(todo)),
+  deleteTodo: id => dispatch(deleteTodo(id))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen);

@@ -1,9 +1,13 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 
-const Todo = ({ title }) => (
+const Todo = ({ todo, deleteTodo }) => (
   <View>
-    <Text>{title}</Text>
+    <Text>{todo.title}</Text>
+
+    <TouchableOpacity onPress={() => deleteTodo(todo.id)}>
+      <Text>Delete todo</Text>
+    </TouchableOpacity>
   </View>
 );
 

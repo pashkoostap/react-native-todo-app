@@ -12,10 +12,14 @@ import ObjectId from "../utils/objectId";
 
 import Todos from "./Todos";
 
-const Home = ({ todos, addTodo }) => (
+const Home = ({ todos, addTodo, deleteTodo }) => (
   <View style={styles.container}>
     <ScrollView>
-      {todos.length ? <Todos todos={todos} /> : <Text>{noTodosYetText}</Text>}
+      {todos.length ? (
+        <Todos todos={todos} deleteTodo={deleteTodo} />
+      ) : (
+        <Text>{noTodosYetText}</Text>
+      )}
 
       <TouchableOpacity
         onPress={() =>

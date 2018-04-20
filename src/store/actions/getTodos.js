@@ -5,16 +5,16 @@ import {
 } from "../../constants/actionTypes";
 import { fetchTodos } from "../../services";
 
-export const getTodosInit = () => ({
+const getTodosInit = () => ({
   type: GET_TODOS_INIT
 });
 
-export const getTodosSuccess = todos => ({
+const getTodosSuccess = todos => ({
   type: GET_TODOS_SUCCESS,
   todos
 });
 
-export const getTodosFail = () => ({
+const getTodosFail = () => ({
   type: GET_TODOS_FAIL
 });
 

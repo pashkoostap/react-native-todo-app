@@ -6,4 +6,6 @@ export const ADD_TODO_INIT = "ADD_TODO_INIT";
 export const ADD_TODO_SUCCESS = "ADD_TODO_SUCCESS";
 export const ADD_TODO_FAIL = "ADD_TODO_FAIL";
 
-export const DELETE_TODO = "DELETE_TODO";
+export const DELETE_TODO_INIT = "DELETE_TODO_INIT";
+export const DELETE_TODO_SUCCESS = "DELETE_TODO_SUCCESS";
+export const DELETE_TODO_FAIL = "DELETE_TODO_FAIL";

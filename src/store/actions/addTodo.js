@@ -5,16 +5,16 @@ import {
 } from "../../constants/actionTypes";
 import { createTodo } from "../../services";
 
-export const addTodoInit = () => ({
+const addTodoInit = () => ({
   type: ADD_TODO_INIT
 });
 
-export const addTodoSuccess = todo => ({
+const addTodoSuccess = todo => ({
   type: ADD_TODO_SUCCESS,
   todo
 });
 
-export const addTodoFail = () => ({
+const addTodoFail = () => ({
   type: ADD_TODO_FAIL
 });
 

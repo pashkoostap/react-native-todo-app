@@ -1,4 +1,5 @@
-import { addTodo } from "./addTodo";
 import { getTodos } from "./getTodos";
+import { addTodo } from "./addTodo";
+import { deleteTodo } from "./deleteTodo";
 
-export { addTodo, getTodos };
+export { getTodos, addTodo, deleteTodo };

@@ -4,15 +4,21 @@ import {
   GET_TODOS_FAIL,
   ADD_TODO_INIT,
   ADD_TODO_SUCCESS,
-  ADD_TODO_FAIL
+  ADD_TODO_FAIL,
+  DELETE_TODO_INIT,
+  DELETE_TODO_SUCCESS,
+  DELETE_TODO_FAIL
 } from "../../constants/actionTypes";
+import { deleteTodoById } from "../../models";
 
 const initState = {
   todos: [],
   isLoading: false,
   isLoaded: false,
-  isTodoUploading: true,
-  isTodoUploaded: false
+  isTodoUploading: false,
+  isTodoUploaded: false,
+  isTodoDeleting: false,
+  isTodoDeleted: false
 };
 
 const todos = (state = initState, action) => {
@@ -39,7 +45,8 @@ const todos = (state = initState, action) => {
       return {
         ...state,
         isTodoUploading: true,
-        isTodoUploaded: false
+        isTodoUploaded: false,
+        dasdasdsd: "dasdsad"
       };
     case ADD_TODO_SUCCESS:
       return {
@@ -54,6 +61,28 @@ const todos = (state = initState, action) => {
         ...state,
         isTodoUploading: false,
         isTodoUploaded: false
+      };
+
+    case DELETE_TODO_INIT:
+      return {
+        ...state,
+        isTodoDeleting: true,
+        isTodoDeleted: false
+      };
+
+    case DELETE_TODO_SUCCESS:
+      return {
+        ...state,
+        todos: deleteTodoById(action.id, state.todos),
+        isTodoDeleting: false,
+        isTodoDeleted: true
+      };
+
+    case DELETE_TODO_FAIL:
+      return {
+        ...state,
+        isTodoDeleting: false,
+        isTodoDeleted: false
       };
 
     default:
