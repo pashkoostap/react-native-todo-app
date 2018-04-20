@@ -1,9 +1,7 @@
 import {
   GET_TODOS_INIT,
   GET_TODOS_SUCCESS,
-  GET_TODOS_FAIL,
-  ADD_TODO,
-  DELETE_TODO
+  GET_TODOS_FAIL
 } from "../../constants/actionTypes";
 import { fetchTodos } from "../../services";
 
@@ -29,13 +27,3 @@ export const getTodos = () => {
       .catch(() => dispatch(getTodosFail()));
   };
 };
-
-export const addTodo = todo => ({
-  type: ADD_TODO,
-  todo
-});
-
-export const deleteTodo = id => ({
-  type: DELETE_TODO,
-  id
-});

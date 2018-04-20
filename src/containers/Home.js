@@ -1,15 +1,14 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import { getTodos } from "../store/actions/todos";
+import { getTodos, addTodo } from "../store/actions";
 import { mapTodos } from "../models";
 
 import Home from "../components/Home";
 
 class HomeScreen extends Component {
   static navigationOptions = ({ navigation }) => ({
-    headerTitle: "dasdas",
-    header: false
+    headerTitle: "Home screen"
   });
 
   componentDidMount() {
@@ -17,7 +16,7 @@ class HomeScreen extends Component {
   }
 
   render() {
-    return <Home todos={this.props.todos} />;
+    return <Home todos={this.props.todos} addTodo={this.props.addTodo} />;
   }
 }
 
@@ -26,7 +25,8 @@ const mapStateToProps = ({ todosReducer }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  getTodos: () => dispatch(getTodos())
+  getTodos: () => dispatch(getTodos()),
+  addTodo: todo => dispatch(addTodo(todo))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen);

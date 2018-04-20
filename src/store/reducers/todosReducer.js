@@ -2,14 +2,17 @@ import {
   GET_TODOS_INIT,
   GET_TODOS_SUCCESS,
   GET_TODOS_FAIL,
-  ADD_TODO,
-  DELETE_TODO
+  ADD_TODO_INIT,
+  ADD_TODO_SUCCESS,
+  ADD_TODO_FAIL
 } from "../../constants/actionTypes";
 
 const initState = {
   todos: [],
   isLoading: false,
-  isLoaded: false
+  isLoaded: false,
+  isTodoUploading: true,
+  isTodoUploaded: false
 };
 
 const todos = (state = initState, action) => {
@@ -32,11 +35,26 @@ const todos = (state = initState, action) => {
         isLoading: false
       };
 
-    case ADD_TODO:
-      return { ...state, todos: [...state.todos, action.todo] };
+    case ADD_TODO_INIT:
+      return {
+        ...state,
+        isTodoUploading: true,
+        isTodoUploaded: false
+      };
+    case ADD_TODO_SUCCESS:
+      return {
+        ...state,
+        todos: { ...state.todos, [action.todo.id]: action.todo },
+        isTodoUploading: false,
+        isTodoUploaded: true
+      };
 
-    case DELETE_TODO:
-      return state;
+    case ADD_TODO_FAIL:
+      return {
+        ...state,
+        isTodoUploading: false,
+        isTodoUploaded: false
+      };
 
     default:
       return state;
