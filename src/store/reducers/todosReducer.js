@@ -24,7 +24,7 @@ const initState = {
 const todos = (state = initState, action) => {
   switch (action.type) {
     case GET_TODOS_INIT:
-      return { ...state, isLoading: true };
+      return { ...state, todos: {}, isLoading: true };
 
     case GET_TODOS_SUCCESS:
       return {

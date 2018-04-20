@@ -1,14 +1,14 @@
 import React from "react";
-import { View } from "react-native";
+import { FlatList, RefreshControl } from "react-native";
 
 import Todo from "./Todo";
 
 const Todos = ({ todos = [], deleteTodo }) => (
-  <View>
-    {todos.map(todo => (
-      <Todo todo={todo} key={todo.id} deleteTodo={deleteTodo} />
-    ))}
-  </View>
+  <FlatList
+    data={todos}
+    renderItem={({ item }) => <Todo todo={item} deleteTodo={deleteTodo} />}
+    keyExtractor={item => item.id}
+  />
 );
 
 export default Todos;

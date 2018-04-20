@@ -36,3 +36,5 @@ export default compose(
     }
   })
 )(Home);
+
+console.disableYellowBox = true;

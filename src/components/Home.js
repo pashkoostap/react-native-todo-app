@@ -13,28 +13,26 @@ import ObjectId from "../utils/objectId";
 
 import Todos from "./Todos";
 
-const Home = ({ todos, addTodo, deleteTodo, showLoader }) => (
+const Home = ({ todos, getTodos, addTodo, deleteTodo, showLoader }) => (
   <View style={styles.container}>
-    <ScrollView>
-      {todos.length ? (
-        <Todos todos={todos} deleteTodo={deleteTodo} />
-      ) : (
-        <Text style={styles.noTodosText}>{noTodosYetText}</Text>
-      )}
+    <View style={styles.addTodoWrapper}>
+      <TouchableOpacity
+        style={styles.addTodoButton}
+        onPress={() =>
+          addTodo({ id: ObjectId(), title: new Date().toString() })
+        }
+      >
+        <Text style={styles.addTodoButtonText}>Add new todo</Text>
+      </TouchableOpacity>
 
-      <View style={styles.addTodoWrapper}>
-        <TouchableOpacity
-          style={styles.addTodoButton}
-          onPress={() =>
-            addTodo({ id: ObjectId(), title: new Date().toString() })
-          }
-        >
-          <Text style={styles.addTodoButtonText}>Add new todo</Text>
-        </TouchableOpacity>
+      {showLoader && <ActivityIndicator animating size="large" />}
+    </View>
 
-        {showLoader && <ActivityIndicator animating size="large" />}
-      </View>
-    </ScrollView>
+    {todos.length ? (
+      <Todos todos={todos} getTodos={getTodos} deleteTodo={deleteTodo} />
+    ) : (
+      <Text style={styles.noTodosText}>{noTodosYetText}</Text>
+    )}
   </View>
 );
 
@@ -47,13 +45,15 @@ const styles = StyleSheet.create({
   },
   noTodosText: {
     fontSize: 20,
+    padding: 20,
     textAlign: "center"
   },
   addTodoWrapper: {
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    width: "100%"
+    width: "100%",
+    padding: 20
   },
   addTodoButton: {
     flex: 1,
@@ -67,8 +67,7 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     paddingBottom: 10,
     backgroundColor: "#ccc",
-    borderRadius: 50,
-    marginTop: 10
+    borderRadius: 50
   }
 });
 
