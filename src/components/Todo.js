@@ -2,13 +2,9 @@ import React from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 
 const Todo = ({ todo, deleteTodo }) => (
-  <View>
+  <TouchableOpacity onPress={() => deleteTodo(todo.id)}>
     <Text>{todo.title}</Text>
-
-    <TouchableOpacity onPress={() => deleteTodo(todo.id)}>
-      <Text>Delete todo</Text>
-    </TouchableOpacity>
-  </View>
+  </TouchableOpacity>
 );
 
 export default Todo;
