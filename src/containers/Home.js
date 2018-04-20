@@ -1,6 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { compose, withHandlers, setStatic, lifecycle } from "recompose";
+import {
+  compose,
+  withHandlers,
+  setStatic,
+  lifecycle,
+  withProps
+} from "recompose";
 
 import { getTodos, addTodo, deleteTodo } from "../store/actions";
 import { mapTodos } from "../models";
@@ -8,7 +14,8 @@ import { mapTodos } from "../models";
 import Home from "../components/Home";
 
 const mapStateToProps = ({ todosReducer }) => ({
-  todos: mapTodos(todosReducer.todos)
+  todos: mapTodos(todosReducer.todos),
+  todosReducer
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -20,6 +27,9 @@ const mapDispatchToProps = dispatch => ({
 export default compose(
   setStatic("navigationOptions", () => ({ header: null })),
   connect(mapStateToProps, mapDispatchToProps),
+  withProps(({ todosReducer: { isTodoUploading, isTodoDeleting } }) => ({
+    showLoader: isTodoUploading || isTodoDeleting
+  })),
   lifecycle({
     componentDidMount() {
       this.props.getTodos();
