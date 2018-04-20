@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import { StyleSheet, View, Text, Button, ScrollView } from "react-native";
 import { connect } from "react-redux";
+
 import { getTodos } from "../store/actions/todos";
 import { mapTodos } from "../models";
 
-import Todos from "../components/Todos";
+import Home from "../components/Home";
 
-class Home extends Component {
+class HomeScreen extends Component {
   static navigationOptions = ({ navigation }) => ({
     headerTitle: "dasdas",
     header: false
@@ -17,23 +17,9 @@ class Home extends Component {
   }
 
   render() {
-    return (
-      <View style={styles.container}>
-        <ScrollView>
-          <Todos todos={this.props.todos} />
-        </ScrollView>
-      </View>
-    );
+    return <Home todos={this.props.todos} />;
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center"
-  }
-});
 
 const mapStateToProps = ({ todosReducer }) => ({
   todos: mapTodos(todosReducer.todos)
@@ -43,4 +29,4 @@ const mapDispatchToProps = dispatch => ({
   getTodos: () => dispatch(getTodos())
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen);
