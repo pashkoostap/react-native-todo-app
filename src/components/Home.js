@@ -13,14 +13,22 @@ import ObjectId from "../utils/objectId";
 
 import Todos from "./Todos";
 
-const Home = ({ todos, getTodos, addTodo, deleteTodo, showLoader }) => (
+const Home = ({
+  todos,
+  getTodos,
+  addTodo,
+  deleteTodo,
+  showLoader,
+  navigation
+}) => (
   <View style={styles.container}>
     <View style={styles.addTodoWrapper}>
       <TouchableOpacity
         style={styles.addTodoButton}
-        onPress={() =>
-          addTodo({ id: ObjectId(), title: new Date().toString() })
-        }
+        // onPress={() =>
+        //   addTodo({ id: ObjectId(), title: new Date().toString() })
+        // }
+        onPress={() => navigation.navigate("NewTodo")}
       >
         <Text style={styles.addTodoButtonText}>Add new todo</Text>
       </TouchableOpacity>
