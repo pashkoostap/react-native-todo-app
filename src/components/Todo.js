@@ -55,13 +55,19 @@ class Todo extends PureComponent {
           <Text>{todo.title}</Text>
         </Animated.View>
 
-        <View style={[styles.absButton, styles.leftButton]}>
-          <Icon name="md-trash" size={30} color="#fff" />
-        </View>
+        <TouchableOpacity
+          style={[styles.absButton, styles.leftButton]}
+          onPress={() => deleteTodo(todo.id)}
+        >
+          <Icon name="md-trash" size={30} color="#000" />
+        </TouchableOpacity>
 
-        <View style={[styles.absButton, styles.rightButton]}>
-          <Icon name="md-trash" size={30} color="#fff" />
-        </View>
+        <TouchableOpacity
+          style={[styles.absButton, styles.rightButton]}
+          onPress={() => deleteTodo(todo.id)}
+        >
+          <Icon name="md-create" size={30} color="#000" />
+        </TouchableOpacity>
       </View>
     );
   }
@@ -71,8 +77,8 @@ const styles = StyleSheet.create({
   itemWrapper: {
     flex: 1,
     width: "100%",
-    backgroundColor: "#ccc",
-    borderBottomColor: "red",
+    backgroundColor: "#f2f2f2",
+    borderBottomColor: "#ccc",
     borderBottomWidth: 1,
     padding: 20,
     zIndex: 1
@@ -84,15 +90,16 @@ const styles = StyleSheet.create({
     width: 70,
     justifyContent: "center",
     alignItems: "center",
-    zIndex: 0
+    zIndex: 0,
+    backgroundColor: "#f2f2f2",
+    borderBottomColor: "#ccc",
+    borderBottomWidth: 1
   },
   leftButton: {
-    left: 0,
-    backgroundColor: "red"
+    left: 0
   },
   rightButton: {
-    right: 0,
-    backgroundColor: "blue"
+    right: 0
   }
 });
 
