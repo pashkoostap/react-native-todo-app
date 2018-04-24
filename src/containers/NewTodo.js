@@ -8,8 +8,7 @@ import NewTodo from "../components/NewTodo";
 
 const mapStateToProps = ({ form, todosReducer }) => ({
   formValue: form,
-  todosReducer,
-  initialValues: { todo: { title: "dasdsdds1" } }
+  todosReducer
 });
 
 const mapDispatchToProps = dispatch => ({

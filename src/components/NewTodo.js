@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { Field, reduxForm } from "redux-form";
-import { compose, lifecycle } from "recompose";
+import { compose, lifecycle, withProps } from "recompose";
 
 import { getTodoValue } from "../store/selectors";
 import ObjectId from "../utils/objectId";
@@ -33,6 +33,12 @@ const styles = StyleSheet.create({
 });
 
 export default compose(
+  withProps(({ navigation: { state: { params } } }) => {
+    const initTodo = (params && params.todo) || {};
+    return {
+      initialValues: { todo: { ...initTodo } }
+    };
+  }),
   reduxForm({ form: "todo" }),
   lifecycle({
     componentWillReceiveProps(nextProps) {
@@ -56,6 +62,7 @@ export default compose(
         }
       } = this.props;
       console.log(params);
+      console.log(this.props);
     }
   })
 )(NewTodo);
