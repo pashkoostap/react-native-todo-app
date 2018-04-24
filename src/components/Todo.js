@@ -5,6 +5,7 @@ import {
   PanResponder,
   Text,
   TouchableOpacity,
+  TouchableHighlight,
   StyleSheet
 } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
@@ -43,7 +44,7 @@ class Todo extends PureComponent {
   }
 
   render() {
-    const { todo, deleteTodo } = this.props;
+    const { todo, deleteTodo, editTodo } = this.props;
     const { position } = this.state;
 
     return (
@@ -64,7 +65,7 @@ class Todo extends PureComponent {
 
         <TouchableOpacity
           style={[styles.absButton, styles.rightButton]}
-          onPress={() => deleteTodo(todo.id)}
+          onPress={() => editTodo(todo)}
         >
           <Icon name="md-create" size={30} color="#000" />
         </TouchableOpacity>

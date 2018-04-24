@@ -8,7 +8,8 @@ import NewTodo from "../components/NewTodo";
 
 const mapStateToProps = ({ form, todosReducer }) => ({
   formValue: form,
-  todosReducer
+  todosReducer,
+  initialValues: { todo: { title: "dasdsdds1" } }
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -20,12 +21,9 @@ export default compose(
   setStatic("navigationOptions", { headerTitle: "Add new todo" }),
   connect(mapStateToProps, mapDispatchToProps),
   withHandlers({
-    saveTodo: props => title => {
-      if (title) {
-        props.addTodo({
-          id: ObjectId(),
-          title
-        });
+    saveTodo: props => todo => {
+      if (todo.title) {
+        props.addTodo(todo);
       } else {
         alert("Title is not valid");
       }

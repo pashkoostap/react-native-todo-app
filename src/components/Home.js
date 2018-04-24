@@ -9,23 +9,16 @@ import {
 } from "react-native";
 
 import { noTodosYetText } from "../constants/messages";
-import ObjectId from "../utils/objectId";
+import { NEW_TODO } from "../constants/navigation";
 
 import Todos from "./Todos";
 import ButtonWithHandler from "./ButtonWithHandler";
 
-const Home = ({
-  todos,
-  getTodos,
-  addTodo,
-  deleteTodo,
-  showLoader,
-  navigation
-}) => (
+const Home = ({ todos, deleteTodo, editTodo, showLoader, navigation }) => (
   <View style={styles.container}>
     <View style={styles.addTodoWrapper}>
       <ButtonWithHandler
-        onPress={() => navigation.navigate("NewTodo")}
+        onPress={() => navigation.navigate(NEW_TODO)}
         text="Add new todo"
       />
 
@@ -33,7 +26,7 @@ const Home = ({
     </View>
 
     {todos.length ? (
-      <Todos todos={todos} getTodos={getTodos} deleteTodo={deleteTodo} />
+      <Todos todos={todos} deleteTodo={deleteTodo} editTodo={editTodo} />
     ) : (
       <Text style={styles.noTodosText}>{noTodosYetText}</Text>
     )}

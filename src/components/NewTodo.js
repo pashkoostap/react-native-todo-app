@@ -4,22 +4,24 @@ import { Field, reduxForm } from "redux-form";
 import { compose, lifecycle } from "recompose";
 
 import { getTodoValue } from "../store/selectors";
+import ObjectId from "../utils/objectId";
 
 import ButtonWithHandler from "./ButtonWithHandler";
 import Input from "./Input";
 
 const NewTodo = ({ formValue, saveTodo }) => {
-  const title = getTodoValue(formValue).title;
+  const { title } = getTodoValue(formValue);
+  const todo = { id: ObjectId(), title };
 
   return (
     <View style={styles.wrapper}>
       <Field
         name="todo.title"
         component={Input}
-        onSubmit={() => saveTodo(title)}
+        onSubmit={() => saveTodo(todo)}
       />
 
-      <ButtonWithHandler onPress={() => saveTodo(title)} text="Save" />
+      <ButtonWithHandler onPress={() => saveTodo(todo)} text="Save" />
     </View>
   );
 };
@@ -46,6 +48,14 @@ export default compose(
       ) {
         goBack();
       }
+    },
+    componentDidMount() {
+      const {
+        navigation: {
+          state: { params }
+        }
+      } = this.props;
+      console.log(params);
     }
   })
 )(NewTodo);
