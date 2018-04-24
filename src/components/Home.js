@@ -12,6 +12,7 @@ import { noTodosYetText } from "../constants/messages";
 import ObjectId from "../utils/objectId";
 
 import Todos from "./Todos";
+import ButtonWithHandler from "./ButtonWithHandler";
 
 const Home = ({
   todos,
@@ -23,15 +24,10 @@ const Home = ({
 }) => (
   <View style={styles.container}>
     <View style={styles.addTodoWrapper}>
-      <TouchableOpacity
-        style={styles.addTodoButton}
-        // onPress={() =>
-        //   addTodo({ id: ObjectId(), title: new Date().toString() })
-        // }
+      <ButtonWithHandler
         onPress={() => navigation.navigate("NewTodo")}
-      >
-        <Text style={styles.addTodoButtonText}>Add new todo</Text>
-      </TouchableOpacity>
+        text="Add new todo"
+      />
 
       {showLoader && <ActivityIndicator animating size="large" />}
     </View>
@@ -62,20 +58,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     width: "100%",
     padding: 20
-  },
-  addTodoButton: {
-    flex: 1,
-    alignItems: "center",
-    marginRight: 10
-  },
-  addTodoButtonText: {
-    fontSize: 16,
-    paddingLeft: 20,
-    paddingRight: 20,
-    paddingTop: 10,
-    paddingBottom: 10,
-    backgroundColor: "#ccc",
-    borderRadius: 50
   }
 });
 

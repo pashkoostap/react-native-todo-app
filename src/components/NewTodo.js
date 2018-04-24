@@ -1,29 +1,44 @@
-import React from "react";
-import { View, Text, TouchableOpacity } from "react-native";
+import React, { Component } from "react";
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { Field, reduxForm } from "redux-form";
 
 import ObjectId from "../utils/objectId";
 import { getTodo } from "../store/selectors";
+
+import ButtonWithHandler from "./ButtonWithHandler";
 import Input from "./Input";
 
-const NewTodo = props => {
-  console.log(props);
-  return (
-    <View>
-      <Text>New Todo</Text>
-      <Field name="todo.title" component={Input} />
-      <TouchableOpacity
-        onPress={() =>
-          props.addTodo({
-            id: ObjectId(),
-            title: getTodo(props.formValue).title
-          })
-        }
-      >
-        <Text>Save</Text>
-      </TouchableOpacity>
-    </View>
-  );
-};
+class NewTodo extends Component {
+  constructor(props) {
+    super(props);
+
+    console.log(this.props);
+  }
+  render() {
+    const { formValue, addTodo } = this.props;
+
+    return (
+      <View style={styles.wrapper}>
+        <Field name="todo.title" component={Input} />
+
+        <ButtonWithHandler
+          onPress={() =>
+            addTodo({
+              id: ObjectId(),
+              title: getTodo(formValue).title
+            })
+          }
+          text="Save"
+        />
+      </View>
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  wrapper: {
+    padding: 20
+  }
+});
 
 export default reduxForm({ form: "todo" })(NewTodo);
