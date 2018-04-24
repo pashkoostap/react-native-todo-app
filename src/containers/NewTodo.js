@@ -5,9 +5,9 @@ import { getTodos, addTodo, deleteTodo } from "../store/actions";
 
 import NewTodo from "../components/NewTodo";
 
-const mapStateToProps = ({ form, todosReducers }) => ({
+const mapStateToProps = ({ form, todosReducer }) => ({
   formValue: form,
-  todosReducers
+  todosReducer
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -12,8 +12,8 @@ import {
 import { deleteTodoById } from "../../models";
 
 const initialLoadersState = {
-  isLoading: false,
-  isLoaded: false,
+  areTodosLoading: false,
+  areTodosLoaded: false,
   isTodoUploading: false,
   isTodoUploaded: false,
   isTodoDeleting: false,
@@ -27,14 +27,19 @@ const initState = {
 const todos = (state = initState, action) => {
   switch (action.type) {
     case GET_TODOS_INIT:
-      return { ...state, todos: {}, ...initialLoadersState, isLoading: true };
+      return {
+        ...state,
+        todos: {},
+        ...initialLoadersState,
+        areTodosLoading: true
+      };
 
     case GET_TODOS_SUCCESS:
       return {
         ...state,
         todos: action.todos || {},
         ...initialLoadersState,
-        isLoaded: true
+        areTodosLoaded: true
       };
 
     case GET_TODOS_FAIL:
@@ -49,6 +54,7 @@ const todos = (state = initState, action) => {
         ...initialLoadersState,
         isTodoUploading: true
       };
+
     case ADD_TODO_SUCCESS:
       return {
         ...state,

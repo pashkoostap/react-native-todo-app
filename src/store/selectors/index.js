@@ -1,2 +1,6 @@
 export const getFormFromState = state => state.form;
-export const getTodo = form => form["todo"]["values"]["todo"];
+export const getTodoValue = form => {
+  const todo = form["todo"];
+
+  return (todo["values"] && todo["values"]["todo"]) || {};
+};
