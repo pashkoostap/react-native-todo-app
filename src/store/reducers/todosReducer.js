@@ -11,8 +11,7 @@ import {
 } from "../../constants/actionTypes";
 import { deleteTodoById } from "../../models";
 
-const initState = {
-  todos: [],
+const initialLoadersState = {
   isLoading: false,
   isLoaded: false,
   isTodoUploading: false,
@@ -20,69 +19,69 @@ const initState = {
   isTodoDeleting: false,
   isTodoDeleted: false
 };
+const initState = {
+  todos: {},
+  ...initialLoadersState
+};
 
 const todos = (state = initState, action) => {
   switch (action.type) {
     case GET_TODOS_INIT:
-      return { ...state, todos: {}, isLoading: true };
+      return { ...state, todos: {}, ...initialLoadersState, isLoading: true };
 
     case GET_TODOS_SUCCESS:
       return {
         ...state,
         todos: action.todos || {},
-        isLoading: false,
+        ...initialLoadersState,
         isLoaded: true
       };
 
     case GET_TODOS_FAIL:
       return {
         ...state,
-        isLoaded: false,
-        isLoading: false
+        ...initialLoadersState
       };
 
     case ADD_TODO_INIT:
       return {
         ...state,
-        isTodoUploading: true,
-        isTodoUploaded: false,
-        dasdasdsd: "dasdsad"
+        ...initialLoadersState,
+        isTodoUploading: true
       };
     case ADD_TODO_SUCCESS:
       return {
         ...state,
         todos: { ...state.todos, [action.todo.id]: action.todo },
-        isTodoUploading: false,
+        ...initialLoadersState,
         isTodoUploaded: true
       };
 
     case ADD_TODO_FAIL:
       return {
         ...state,
-        isTodoUploading: false,
-        isTodoUploaded: false
+        ...initialLoadersState
       };
 
     case DELETE_TODO_INIT:
       return {
         ...state,
-        isTodoDeleting: true,
-        isTodoDeleted: false
+        ...initialLoadersState,
+        isTodoDeleting: true
       };
 
     case DELETE_TODO_SUCCESS:
       return {
         ...state,
         todos: deleteTodoById(action.id, state.todos),
-        isTodoDeleting: false,
+        ...initialLoadersState,
         isTodoDeleted: true
       };
 
     case DELETE_TODO_FAIL:
       return {
         ...state,
-        isTodoDeleting: false,
-        isTodoDeleted: false
+        ...initialLoadersState
       };
 
     default:

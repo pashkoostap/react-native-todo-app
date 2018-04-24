@@ -26,7 +26,7 @@ class Todo extends PureComponent {
   }
 
   onPanResponderMove(e, gestureState) {
-    const deltaX = Math.floor(gestureState.dx);
+    const deltaX = Math.round(gestureState.dx);
     const xPosition = deltaX < -40 ? -70 : deltaX > 40 ? 70 : deltaX;
     const position = new Animated.ValueXY({
       x: xPosition,
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
   itemWrapper: {
     flex: 1,
     width: "100%",
-    backgroundColor: "#f2f2f2",
+    backgroundColor: "#fff",
     borderBottomColor: "#ccc",
     borderBottomWidth: 1,
     padding: 20,
