@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { Field, reduxForm } from "redux-form";
-import { compose, lifecycle, withProps } from "recompose";
+import { compose, setStatic, lifecycle, withProps } from "recompose";
 
 import { getTodoValue } from "../store/selectors";
 import { getParamsFromNavigationState } from "../models";
@@ -12,7 +12,10 @@ import Input from "./Input";
 
 const NewTodo = ({ formValue, saveTodo, navigation }) => {
   const initTodo = getParamsFromNavigationState(navigation, "todo");
-  const todo = { id: initTodo.id || ObjectId(), getTodoValue(formValue) };
+  const todo = {
+    id: initTodo.id || ObjectId(),
+    title: getTodoValue(formValue)
+  };
 
   return (
     <View style={styles.wrapper}>

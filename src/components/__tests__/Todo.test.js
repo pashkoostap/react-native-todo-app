@@ -4,8 +4,8 @@ import Todo from "../Todo";
 
 describe("Todo", () => {
   it("should match the snapshot", () => {
-    const todo = "todo";
-    const rendered = renderer.create(<Todo title={todo} />).toJSON();
+    const todo = { title: "todo" };
+    const rendered = renderer.create(<Todo todo={todo} />).toJSON();
 
     expect(rendered).toMatchSnapshot();
   });
