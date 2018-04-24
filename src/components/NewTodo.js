@@ -4,14 +4,15 @@ import { Field, reduxForm } from "redux-form";
 import { compose, lifecycle, withProps } from "recompose";
 
 import { getTodoValue } from "../store/selectors";
+import { getParamsFromNavigationState } from "../models";
 import ObjectId from "../utils/objectId";
 
 import ButtonWithHandler from "./ButtonWithHandler";
 import Input from "./Input";
 
-const NewTodo = ({ formValue, saveTodo }) => {
-  const { title } = getTodoValue(formValue);
-  const todo = { id: ObjectId(), title };
+const NewTodo = ({ formValue, saveTodo, navigation }) => {
+  const initTodo = getParamsFromNavigationState(navigation, "todo");
+  const todo = { id: initTodo.id || ObjectId(), getTodoValue(formValue) };
 
   return (
     <View style={styles.wrapper}>
@@ -33,8 +34,9 @@ const styles = StyleSheet.create({
 });
 
 export default compose(
-  withProps(({ navigation: { state: { params } } }) => {
-    const initTodo = (params && params.todo) || {};
+  withProps(({ navigation }) => {
+    const initTodo = getParamsFromNavigationState(navigation, "todo");
+
     return {
       initialValues: { todo: { ...initTodo } }
     };
@@ -54,15 +56,6 @@ export default compose(
       ) {
         goBack();
       }
-    },
-    componentDidMount() {
-      const {
-        navigation: {
-          state: { params }
-        }
-      } = this.props;
-      console.log(params);
-      console.log(this.props);
     }
   })
 )(NewTodo);
