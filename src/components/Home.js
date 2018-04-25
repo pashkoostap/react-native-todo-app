@@ -2,7 +2,6 @@ import React from "react";
 import {
   StyleSheet,
   View,
-  Text,
   TouchableOpacity,
   ScrollView,
   ActivityIndicator
@@ -12,6 +11,7 @@ import { noTodosYetText } from "../constants/messages";
 import { TODO_MODAL } from "../constants/navigation";
 
 import Todos from "./Todos";
+import WarningText from "./WarningText";
 import ButtonWithHandler from "./ButtonWithHandler";
 
 const Home = ({ todos, deleteTodo, editTodo, showLoader, navigation }) => (
@@ -28,7 +28,7 @@ const Home = ({ todos, deleteTodo, editTodo, showLoader, navigation }) => (
     {todos.length ? (
       <Todos todos={todos} deleteTodo={deleteTodo} editTodo={editTodo} />
     ) : (
-      <Text style={styles.noTodosText}>{noTodosYetText}</Text>
+      <WarningText text={noTodosYetText} />
     )}
   </View>
 );
@@ -40,11 +40,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     paddingBottom: 20
   },
-  noTodosText: {
-    fontSize: 20,
-    padding: 20,
-    textAlign: "center"
-  },
+
   addTodoWrapper: {
     flexDirection: "row",
     justifyContent: "center",

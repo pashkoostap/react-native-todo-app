@@ -5,12 +5,15 @@ exports[`Todos should match the snapshot 1`] = `
   data={
     Array [
       Object {
+        "id": "id_1",
         "title": "todo 1",
       },
       Object {
+        "id": "id_2",
         "title": "todo 2",
       },
       Object {
+        "id": "id_3",
         "title": "todo 3",
       },
     ]

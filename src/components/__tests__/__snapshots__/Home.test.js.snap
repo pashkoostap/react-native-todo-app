@@ -72,9 +72,18 @@ exports[`Home should match the snapshot 1`] = `
   <RCTScrollView
     data={
       Array [
-        "todo 1",
-        "todo 2",
-        "todo 3",
+        Object {
+          "id": "id_1",
+          "title": "todo 1",
+        },
+        Object {
+          "id": "id_2",
+          "title": "todo 2",
+        },
+        Object {
+          "id": "id_3",
+          "title": "todo 3",
+        },
       ]
     }
     disableVirtualization={false}
@@ -143,7 +152,9 @@ exports[`Home should match the snapshot 1`] = `
               accessible={true}
               allowFontScaling={true}
               ellipsizeMode="tail"
-            />
+            >
+              todo 1
+            </Text>
           </View>
           <View
             accessibilityComponentType={undefined}
@@ -300,7 +311,9 @@ exports[`Home should match the snapshot 1`] = `
               accessible={true}
               allowFontScaling={true}
               ellipsizeMode="tail"
-            />
+            >
+              todo 2
+            </Text>
           </View>
           <View
             accessibilityComponentType={undefined}
@@ -457,7 +470,9 @@ exports[`Home should match the snapshot 1`] = `
               accessible={true}
               allowFontScaling={true}
               ellipsizeMode="tail"
-            />
+            >
+              todo 3
+            </Text>
           </View>
           <View
             accessibilityComponentType={undefined}

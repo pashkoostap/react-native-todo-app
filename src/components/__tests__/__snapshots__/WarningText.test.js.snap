@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`WarningText should match the snapshot 1`] = `
+<Text
+  accessible={true}
+  allowFontScaling={true}
+  ellipsizeMode="tail"
+  style={
+    Object {
+      "fontSize": 20,
+      "padding": 20,
+      "textAlign": "center",
+    }
+  }
+>
+  test
+</Text>
+`;
