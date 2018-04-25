@@ -9,7 +9,7 @@ import {
 } from "react-native";
 
 import { noTodosYetText } from "../constants/messages";
-import { NEW_TODO } from "../constants/navigation";
+import { TODO_MODAL } from "../constants/navigation";
 
 import Todos from "./Todos";
 import ButtonWithHandler from "./ButtonWithHandler";
@@ -18,7 +18,7 @@ const Home = ({ todos, deleteTodo, editTodo, showLoader, navigation }) => (
   <View style={styles.container}>
     <View style={styles.addTodoWrapper}>
       <ButtonWithHandler
-        onPress={() => navigation.navigate(NEW_TODO)}
+        onPress={() => navigation.navigate(TODO_MODAL)}
         text="Add new todo"
       />
 

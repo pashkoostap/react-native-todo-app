@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { getTodos, addTodo, deleteTodo } from "../store/actions";
 import ObjectId from "../utils/objectId";
 
-import NewTodo from "../components/NewTodo";
+import TodoModal from "../components/TodoModal";
 
 const mapStateToProps = ({ form, todosReducer }) => ({
   formValue: form,
@@ -28,4 +28,4 @@ export default compose(
       }
     }
   })
-)(NewTodo);
+)(TodoModal);

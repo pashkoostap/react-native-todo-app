@@ -10,11 +10,11 @@ import ObjectId from "../utils/objectId";
 import ButtonWithHandler from "./ButtonWithHandler";
 import Input from "./Input";
 
-const NewTodo = ({ formValue, saveTodo, navigation }) => {
+const TodoModal = ({ formValue, saveTodo, navigation }) => {
   const initTodo = getParamsFromNavigationState(navigation, "todo");
   const todo = {
     id: initTodo.id || ObjectId(),
-    title: getTodoValue(formValue)
+    title: getTodoValue(formValue).title
   };
 
   return (
@@ -41,7 +41,8 @@ export default compose(
     const initTodo = getParamsFromNavigationState(navigation, "todo");
 
     return {
-      initialValues: { todo: { ...initTodo } }
+      initialValues: { todo: { ...initTodo } },
+      navigation
     };
   }),
   reduxForm({ form: "todo" }),
@@ -61,4 +62,4 @@ export default compose(
       }
     }
   })
-)(NewTodo);
+)(TodoModal);

@@ -10,7 +10,7 @@ import {
 
 import { getTodos, addTodo, deleteTodo } from "../store/actions";
 import { mapTodos } from "../models";
-import { NEW_TODO } from "../constants/navigation";
+import { TODO_MODAL } from "../constants/navigation";
 
 import Home from "../components/Home";
 
@@ -36,7 +36,7 @@ export default compose(
       props.deleteTodo(id);
     },
     editTodo: props => todo => {
-      props.navigation.navigate(NEW_TODO, { todo });
+      props.navigation.navigate(TODO_MODAL, { todo });
     }
   }),
   lifecycle({
