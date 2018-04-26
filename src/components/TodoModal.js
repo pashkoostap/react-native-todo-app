@@ -6,26 +6,34 @@ import { compose, setStatic, lifecycle, withProps } from "recompose";
 import { getTodoValue } from "../store/selectors";
 import { getParamsFromNavigationState } from "../models";
 import ObjectId from "../utils/objectId";
+import I18n from "../localization";
 
 import ButtonWithHandler from "./ButtonWithHandler";
 import Input from "./Input";
+import TodoStatusPicker from "./TodoStatusPicker";
 
 const TodoModal = ({ formValue, saveTodo, navigation }) => {
   const initTodo = getParamsFromNavigationState(navigation, "todo");
+  const todoFromStore = getTodoValue(formValue);
   const todo = {
     id: initTodo.id || ObjectId(),
-    title: getTodoValue(formValue).title
+    title: todoFromStore.title,
+    status: todoFromStore.status
   };
 
   return (
     <View style={styles.wrapper}>
-      <Field
-        name="todo.title"
-        component={Input}
-        onSubmit={() => saveTodo(todo)}
-      />
+      <Field name="todo.title" component={Input} />
 
-      <ButtonWithHandler onPress={() => saveTodo(todo)} text="Save" />
+      <View style={styles.formField}>
+        <Text>{I18n.t("todoModal.selectStatusLabel")}</Text>
+        <Field name="todo.status" component={TodoStatusPicker} />
+      </View>
+
+      <ButtonWithHandler
+        onPress={() => saveTodo(todo)}
+        text={I18n.t("todoModal.saveButtonText")}
+      />
     </View>
   );
 };
@@ -33,6 +41,10 @@ const TodoModal = ({ formValue, saveTodo, navigation }) => {
 const styles = StyleSheet.create({
   wrapper: {
     padding: 20
+  },
+  formField: {
+    paddingTop: 20,
+    paddingBottom: 20
   }
 });
 
