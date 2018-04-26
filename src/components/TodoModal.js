@@ -18,7 +18,7 @@ const TodoModal = ({ formValue, saveTodo, navigation }) => {
   const todo = {
     id: initTodo.id || ObjectId(),
     title: todoFromStore.title,
-    status: todoFromStore.status
+    status: todoFromStore.status || "actual"
   };
 
   return (

@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TodoStatusPicker should match the snapshot 1`] = `
+<View
+  style={undefined}
+>
+  <RCTPicker
+    items={
+      Array [
+        Object {
+          "label": "Actual",
+          "textColor": undefined,
+          "value": "actual",
+        },
+        Object {
+          "label": "Completed",
+          "textColor": undefined,
+          "value": "completed",
+        },
+      ]
+    }
+    onChange={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    selectedIndex={0}
+    style={
+      Array [
+        Object {
+          "height": 216,
+        },
+        undefined,
+      ]
+    }
+  />
+</View>
+`;
