@@ -9,6 +9,7 @@ import {
 
 import { noTodosYetText } from "../constants/messages";
 import { TODO_MODAL } from "../constants/navigation";
+import I18n from "../localization";
 
 import Todos from "./Todos";
 import WarningText from "./WarningText";
@@ -19,7 +20,7 @@ const Home = ({ todos, deleteTodo, editTodo, showLoader, navigation }) => (
     <View style={styles.addTodoWrapper}>
       <ButtonWithHandler
         onPress={() => navigation.navigate(TODO_MODAL)}
-        text="Add new todo"
+        text={I18n.t("home.buttonText")}
       />
 
       {showLoader && <ActivityIndicator animating size="large" />}
@@ -28,7 +29,7 @@ const Home = ({ todos, deleteTodo, editTodo, showLoader, navigation }) => (
     {todos.length ? (
       <Todos todos={todos} deleteTodo={deleteTodo} editTodo={editTodo} />
     ) : (
-      <WarningText text={noTodosYetText} />
+      <WarningText text={I18n.t("home.noTodosText")} />
     )}
   </View>
 );
